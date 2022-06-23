@@ -1,22 +1,19 @@
-const initModels = require('../models/init-models')
+const users = require('../models/init-models').initModels().users;
 const uuid =require('uuid')
 
 
 const registerNewUser = async (data, hashPassword) =>{
     const id = uuid.v4()
-    const fecha = new Date
-    const today = fecha.getDate()
-    const newUser = await models.users.create({
+    const newUser = await users.create({
         id,
         ...data,
-        password: hashPassword,
-        createdAt: today
+        password: hashPassword
     })
     return newUser
 }
 
 const getMyUserByEmail = async (email) => {
-    const myUser = await models.users.findOne({
+    const myUser = await users.findOne({
         where:{
             email
         }
