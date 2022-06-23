@@ -33,7 +33,7 @@ app.use("/api/v1", messageRouter)
 app.use("/api/v1", participansRouter)
 
 app.listen(config.port, () =>{
-    //console.log(`puerto funcionando bien ${config.port}`)
+    console.log(`Server started at port ${config.port}`)
 })
 
 module.exports = { app };

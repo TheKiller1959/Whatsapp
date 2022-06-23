@@ -1,6 +1,4 @@
 const initModels = require('../models/init-models')
-const sequelize = require('../models/index').sequelize
-const models = initModels(sequelize)
 const uuid = require('uuid')
 
 const postNewMessage = async (data) =>{
