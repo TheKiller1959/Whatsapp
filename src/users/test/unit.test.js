@@ -8,7 +8,7 @@
 //       const response = await userControllers.getAll()
 //       return response
 //     }
-//     assert.typeOf(result, 'object')
+//     assert.equal(result, 'array')
 //     done()
 //   })
 // })
