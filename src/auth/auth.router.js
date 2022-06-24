@@ -6,6 +6,7 @@ const http = require('./auth.http')
 router.route('/signup')
     .post(http.registerUser)
 router.route('/login')
+    .get(http.loginUser)
     .post(http.loginUser)
 
 
