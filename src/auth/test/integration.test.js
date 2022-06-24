@@ -5,13 +5,13 @@ const { describe, it, before } = require('mocha');
 
 chai.use(chaiHttp)
 
-describe('Suite de testing de integracion para AUTH', () => {
+describe('Suite de testing de integracion para autorizaciones (auth)', () => {
   // ? Test a ruta protegida
-  it('Should return 401 when no jwt available', (done) => {
+  it('Should return 400 when no jwt available', (done) => {
     chai.request(app)
       .get('/api/v1/auth/login')
       .end((err, res) => {
-        chai.assert.equal(res.status, 401)
+        chai.assert.equal(res.status, 400)
         done()
       })
   })
@@ -31,17 +31,29 @@ describe('Suite de testing de integracion para AUTH', () => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .set("content-type", "application/json")
-      .send({"id": "2c3ac422-9309-4dff-80ca-8824091de982",
-      firstname: "alivier",
-      lastname: "zapata",
-      email: "alivierz@cademlo.com",
-      password: "$2b$10$TxqtNPqRtDGy7EW9QxFTPucgScZ6up70K/GTKYpxkxiaAbrDZACYK",
-      profile_image: "",
-      phone: "98328480"
+      .send({
+        "email": "alivierz@cademlo.com",
+        "password": "khdskys"
       })
       .end((err, res) => {
         chai.assert.equal(res.status, 200)
         chai.assert.typeOf(res.body.token, 'string')
+        done()
+      })
+  })
+
+
+  it('Should reutn 200 when data is valid', (done) => {
+    chai.request(app)
+      .get('/api/v1/auth/login')
+      .set("content-type", "application/json")
+      .send({
+        "email": "alivierz@cademlo.com",
+        "password": "khdskys"
+      })
+      .end((err, res) => {
+        chai.assert.equal(res.status, 200)
+        chai.assert.typeOf(res.body, 'object')
         done()
       })
   })
