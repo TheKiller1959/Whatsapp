@@ -1,25 +1,23 @@
-const initModels = require('../models/init-models')
-const sequelize = require('../models/index').sequelize
-const models = initModels(sequelize)
+const { message, conversations } = require('../models/init-models').initModels();
 const uuid = require('uuid')
 
-const postNewMessage = async (data) =>{
+const postNewMessage = async (data) => {
     const id = uuid.v4()
     const fecha = new Date
     const today = fecha.getDate()
-    const message = await models.message.create({
+    const message = await message.create({
         id,
         ...data,
         createdAt: today
     })
     return message
 }
-const getFullConver = async (id) =>{
-    const fullConver = await models.conversations.findOne({
-        where: {id},
+const getFullConver = async (id) => {
+    const fullConver = await conversations.findOne({
+        where: { id },
         include: [
             {
-                model: models.message,
+                model: message,
                 as: "messages"
             }
         ]

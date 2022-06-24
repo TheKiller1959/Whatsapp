@@ -4,7 +4,21 @@ var _message = require("./message");
 var _participants = require("./participants");
 var _users = require("./users");
 
-function initModels(sequelize) {
+const Sequelize = require('sequelize');
+require('dotenv').config()
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config');
+
+const configObj = config[env]
+
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[configObj.use_env_variable], configObj);
+} else {
+  sequelize = new Sequelize(configObj.database, configObj.username, configObj.password, configObj);
+}
+
+function initModels() {
   var conversations = _conversations(sequelize, DataTypes);
   var message = _message(sequelize, DataTypes);
   var participants = _participants(sequelize, DataTypes);
@@ -28,6 +42,6 @@ function initModels(sequelize) {
     users,
   };
 }
-module.exports = initModels;
+
 module.exports.initModels = initModels;
-module.exports.default = initModels;
+module.exports.sequelize = sequelize;

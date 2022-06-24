@@ -1,18 +1,16 @@
-const initModels = require('../models/init-models')
-const sequelize = require('../models/index').sequelize
-const models = initModels(sequelize)
+const conversations = require('../models/init-models').initModels().conversations;
 const uuid = require('uuid')
 
 
 const getAllConversations = async () =>{
-    const conversations = await models.conversations.findAll({})
+    const conversations = await conversations.findAll({})
     return conversations
 }
 const createConversation = async (data) =>{
     const id = uuid.v4()
     const fecha = new Date
     const today = fecha.getDate()
-    const newConver = await models.conversations.create({
+    const newConver = await conversations.create({
         id,
         ...data,
         createdAt: today
@@ -20,7 +18,7 @@ const createConversation = async (data) =>{
     return newConver
 }
 const getMyCon = async (id) =>{
-    const userCon = await models.conversations.findOne({
+    const userCon = await conversations.findOne({
         where:{
             id
         }
@@ -31,7 +29,7 @@ const getMyCon = async (id) =>{
 const updateCon = async (body, id) => {
     const fecha = new Date
     const today = fecha.getDate()
-    const conversationU = await models.conversations.update({...body, updatedAt: today} ,  {where: {id}})
+    const conversationU = await conversations.update({...body, updatedAt: today} ,  {where: {id}})
     if(!conversationU){
         return null
     }
@@ -39,7 +37,7 @@ const updateCon = async (body, id) => {
     return update
 }
 const deleteConv = async (id) =>{
-    const deleteCon = await models.conversations.destroy({
+    const deleteCon = await conversations.destroy({
         where:{
             id
         }

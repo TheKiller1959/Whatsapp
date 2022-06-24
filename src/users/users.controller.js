@@ -1,14 +1,12 @@
-const initModels = require('../models/init-models')
-const sequelize = require('../models/index').sequelize
-const models = initModels(sequelize)
+const users = require('../models/init-models').initModels().users;
 
 
 const getAll = async () =>{
-    const users = await models.users.findAll({})
-    return users
+    const allUsers = await users.findAll({})
+    return allUsers
 }
 const getMyUser = async (id) =>{
-    const user = await models.users.findOne({
+    const user = await users.findOne({
         where:{
             id
         }
@@ -18,9 +16,9 @@ const getMyUser = async (id) =>{
 }
 
 const updateMyUser = async (id, data) =>{
-    const update = await models.users.update({...data} ,  {where: {id}})
+    const update = await users.update({...data} ,  {where: {id}})
     if(update){
-        const user = await models.users.findOne({
+        const user = await users.findOne({
             where: {id}
         })
         return user
@@ -29,7 +27,7 @@ const updateMyUser = async (id, data) =>{
 }
 
 const deleteUser = async (id) =>{
-    const deleteUser = await models.users.destroy({
+    const deleteUser = await users.destroy({
         where: {
             id
         }
@@ -38,7 +36,7 @@ const deleteUser = async (id) =>{
 }
 
 const getMeUser = async (email) =>{
-    const user = await models.users.findOne({
+    const user = await users.findOne({
         where: {
             email
         }
