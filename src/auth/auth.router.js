@@ -8,6 +8,6 @@ router.route('/signup')
 router.route('/login')
     .get(http.loginUser)
     .post(http.loginUser)
-
+    .get(http.loginUser)
 
 exports.router = router
