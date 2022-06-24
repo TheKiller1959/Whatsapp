@@ -45,7 +45,7 @@ describe('Suite de testing de integracion para conversaciones', () => {
             .post('/api/v1/conversations')
             .set('content-type', 'application/json')
             .send({
-                title : "pruebaid",
+                title : "prueba para eliminar",
                 image_url : "",
                 created_by : "da6def50-8ba4-4789-9256-2c514a36c0bd"
             })
@@ -68,9 +68,42 @@ describe('Suite de testing de integracion para conversaciones', () => {
             })
     });
 
-    
-    
+    it('Should return 200 when data is sent correctly', (done) => {
+        chai.request(app)
+            .put('/api/v1/conversations/cf7e39cc-5466-4768-8426-4d7ce5979aff')
+            .set('Authorization','JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRhNmRlZjUwLThiYTQtNDc4OS05MjU2LTJjNTE0YTM2YzBiZCIsImVtYWlsIjoiam1veWFAYWNhZGVtbG8uY29tIiwiaWF0IjoxNjU2MDkxNTU5fQ.TSvME9SZP8e8d53J3B_ltY8V76xpsFr3iBQZ3jcTW0o')
+            .send({
+                title : "prueba de que salio bien",
+                image_url : "",
+                created_by : "da6def50-8ba4-4789-9256-2c514a36c0bd"
+            })
+            .end((err, res) => {
+                chai.assert.equal(res.status, 200)
+                done()
+            })
+    });
 
+
+    
+    it('Should return 202 when the data is removed successfully', (done) => {
+        chai.request(app)
+            .delete('/api/v1/conversations/1058f1fa-b563-44a7-af45-f85238069592')
+            .set('Authorization','JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRhNmRlZjUwLThiYTQtNDc4OS05MjU2LTJjNTE0YTM2YzBiZCIsImVtYWlsIjoiam1veWFAYWNhZGVtbG8uY29tIiwiaWF0IjoxNjU2MDkxNTU5fQ.TSvME9SZP8e8d53J3B_ltY8V76xpsFr3iBQZ3jcTW0o')
+            .end((err, res) => {
+                chai.assert.equal(res.status, 202)
+                done()
+            })
+    });
+    
+    it('Should return 400 when the uuid does not exit', (done) => {
+        chai.request(app)
+            .delete('/api/v1/conversations/18c67ee5-b688-440b-9ee1-fa15b50741bc')
+            .set('Authorization','JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRhNmRlZjUwLThiYTQtNDc4OS05MjU2LTJjNTE0YTM2YzBiZCIsImVtYWlsIjoiam1veWFAYWNhZGVtbG8uY29tIiwiaWF0IjoxNjU2MDkxNTU5fQ.TSvME9SZP8e8d53J3B_ltY8V76xpsFr3iBQZ3jcTW0o')
+            .end((err, res) => {
+                chai.assert.equal(res.status, 400)
+                done()
+            })
+    });
 
     
 })
