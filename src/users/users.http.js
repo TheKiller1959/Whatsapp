@@ -40,7 +40,7 @@ const deleteUser = async (req, res) =>{
     }
     const [value , err] = await toPromise(controllers.deleteUser(req.params.uuid))
     if(err){
-        return res.status(401).json({message: 'Invalid User id'})
+        return res.status(400).json({message: 'Invalid User id'})
     }
 
     res.status(202).json({message: `Deleted user ${value} succesfully`})
