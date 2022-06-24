@@ -3,8 +3,8 @@ const uuid = require('uuid')
 
 
 const getAllConversations = async () =>{
-    const conversations = await conversations.findAll({})
-    return conversations
+    const conver = await conversations.findAll({})
+    return conver
 }
 const createConversation = async (data) =>{
     const id = uuid.v4()
