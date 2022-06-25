@@ -1,9 +1,11 @@
 const router = require('express').Router()
 const http = require('./message.http')
+const passport = require('passport')
+require('../tools/auth.passport')(passport)
 
 router.route('/conversations/:uuid/message')
-    .get(http.getMessage)
-    .post(http.postMessage)
+    .get(passport.authenticate('jwt', {session: false}), http.getMessage)
+    .post(passport.authenticate('jwt', {session: false}), http.postMessage)
     //.delete()
 
 

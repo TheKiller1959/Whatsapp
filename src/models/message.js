@@ -25,7 +25,17 @@ module.exports = function(sequelize, DataTypes) {
     message: {
       type: DataTypes.STRING(255),
       allowNull: false
-    }
+    },
+    createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    field: 'created_at'
+    },
+    updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    field: 'updated_at'
+    } 
   }, {
     sequelize,
     tableName: 'message',
