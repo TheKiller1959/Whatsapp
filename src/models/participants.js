@@ -21,7 +21,15 @@ module.exports = function(sequelize, DataTypes) {
         model: 'users',
         key: 'id'
       }
-    }
+    },
+    createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    },
+    updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    } 
   }, {
     sequelize,
     tableName: 'participants',

@@ -4,9 +4,9 @@ const converControllers = require('../conversation.controller')
 
 
 describe("Suite de Testing unitario para los controladores de conversaciones", () => {
-    it("Testing to getAllconversations", (done) => {
-        const testFunc = converControllers.getMyCon(0)
-        assert.equal(testFunc.image_url, 'prueba')
+    it("Testing to getAllconversations",  (done) => {
+        const testFunc =  converControllers.getAllConversations()
+        assert.typeOf(testFunc.created_by, 'string')
         done()
     });
 });

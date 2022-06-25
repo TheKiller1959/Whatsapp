@@ -18,7 +18,7 @@ const getFullConver = async (id) => {
         include: [
             {
                 model: message,
-                as: "messages"
+                as: "message"
             }
         ]
     })

@@ -1,4 +1,6 @@
-const { participants, conversations } = require('../models/init-models').initModels();
+const conversations = require('../models/init-models').initModels().conversations;
+const participants = require('../models/init-models').initModels().participants;
+const users = require('../models/init-models').initModels().users
 const uuid = require('uuid')
 
 
@@ -15,19 +17,33 @@ const postPartici = async (data, idC) => {
     return participan
 }
 const getPartici = async (id) => {
-    const participants = await conversations.findOne({
+    const conversation = await conversations.findOne({
         where: {
             id
         },
-        include: [
-            {
-                model: participants,
-                as: "participants"
-            }
-        ]
-    })
-    return participants
-}
+        attributes:{
+            exclude: ['createdAt', 'updatedAt'],
+        },
+        include: [{
+            model: participants,
+            as: 'participants',
+            attributes: {
+                exclude: ['createdAt', 'updatedAt'],
+            },
+            include: [{
+                model: users,
+                as: 'user',
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'password'],
+                    },
+                }
+            ],
+           
+        }, 
+    ],
+    });
+    return conversation;
+};
 module.exports = {
     postPartici,
     getPartici
