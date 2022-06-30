@@ -1,4 +1,4 @@
-const conversations = require('../models/init-models').initModels().conversations;
+const conversations = require('../database/models/init-models').initModels().conversations
 const uuid = require('uuid')
 
 

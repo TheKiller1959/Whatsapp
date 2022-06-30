@@ -31,7 +31,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(16),
       allowNull: false,
       unique: "users_phone_key"
-    }
+    },
+    createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    },
+    updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    } 
   }, {
     sequelize,
     tableName: 'users',
