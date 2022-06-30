@@ -1,4 +1,4 @@
-const { message, conversations } = require('../models/init-models').initModels();
+const { message, conversations } = require('../database/models/init-models').initModels();
 const uuid = require('uuid')
 
 const postNewMessage = async (data) => {

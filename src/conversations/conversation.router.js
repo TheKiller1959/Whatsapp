@@ -5,7 +5,7 @@ const http = require('./conversation.http')
 
 router.route('/conversations')
     .get(http.getAllConversation)
-    .post(http.postConversation)
+    .post(passport.authenticate('jwt', {session: false}), http.postConversation)
 
 router.route('/conversations/:uuid')
     .get(passport.authenticate('jwt', {session: false}), http.getMyConversations)

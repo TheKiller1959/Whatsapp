@@ -1,6 +1,6 @@
-const conversations = require('../models/init-models').initModels().conversations;
-const participants = require('../models/init-models').initModels().participants;
-const users = require('../models/init-models').initModels().users
+const conversations = require('../database/models/init-models').initModels().conversations;
+const participants = require('../database/models/init-models').initModels().participants;
+const users = require('../database/models/init-models').initModels().users
 const uuid = require('uuid')
 
 

@@ -1,4 +1,4 @@
-const users = require('../models/init-models').initModels().users;
+const users = require('../database/models/init-models').initModels().users;
 
 
 const getAll = async () =>{
