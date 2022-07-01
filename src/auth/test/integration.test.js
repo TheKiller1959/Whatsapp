@@ -54,4 +54,23 @@ describe('Suite de testing de integracion para autorizaciones (auth)', () => {
         done()
       })
   })
+
+  it('Should reutn 201 when user has been created', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .set("content-type", "application/json")
+      .send({
+        "firstname": "billy",
+        "lastname": "niño",
+        "email": "bfix@academlo.com",
+        "password": "campagnoli",
+        "profile_image": "",
+        "phone": "23625634",
+      })
+      .end((err, res) => {
+        chai.assert.equal(res.status, 201)
+        chai.assert.typeOf(res.body, 'object')
+        done()
+      })
+  })
 })
