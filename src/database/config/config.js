@@ -14,14 +14,12 @@ module.exports = {
         "host": "127.0.0.1",
         "dialect": "postgres"
     },
-    "production": {
+    production: {
         url: config.db.production.url,
+        use_env_variable: config.db.production.url,
         dialect: 'postgres',
-        dialectOptions: {
-            ssl: {
-                require: true,
-                rejectUnauthorized: false
-            }
-        },
-    }
+        protocol: 'postgres',
+        ssl: true,
+        dialectOptions: { ssl: { require: true, rejectUnauthorized: false } },
+    },
 }

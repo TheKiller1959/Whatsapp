@@ -3,18 +3,14 @@ const uuid =require('uuid')
 const crypto = require('../tools/crypto')
 
 const registerNewUser = async (data) =>{
-    
-        const hashedPassword = crypto.hashPassword(data.password);
-        const user_id = uuid.v4();
-        const newUser = await users.create({
-            id: user_id,
-            ...data,
-            password: hashedPassword
-        });
-        return {
-            message: `User created succesfully with the id: ${user_id}`,
-            user: newUser,
-        };
+    const id = uuid.v4()
+    const hashPassword = crypto.hashPassword(data.password)
+    const newUser = await users.create({
+        id,
+        ...data,
+        password: hashPassword
+    })
+    return newUser
 }
 
 const getMyUserByEmail = async (email) => {
