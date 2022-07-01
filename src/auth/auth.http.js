@@ -2,20 +2,20 @@ const controllers = require('./auth.controller')
 const jwt = require('jsonwebtoken')
 const toPromise = require('../tools/toPromise').toPromise
 const config = require('../config')
-const crypto = require('../tools/crypto')
+
 
 
 const registerUser = async (req, res) => {
     if (!req.body) {
         return res.status(400).json({ message: 'Invalid Data' })
     }
-    const hashPassword = crypto.hashPassword(req.body.password)
-
-    const [newUser, err] = await toPromise(controllers.registerNewUser(req.body, hashPassword))
+    
+    const [newUser, err] = await toPromise(controllers.registerNewUser(req.body))
     if (err) {
+        console.log(err)
         return res.status(400).json({ message: 'Internal Error' })
     }
-
+    
     res.status(201).json(newUser)
 }
 
