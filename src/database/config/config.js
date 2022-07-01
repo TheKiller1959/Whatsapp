@@ -15,7 +15,7 @@ module.exports = {
         "dialect": "postgres"
     },
     "production": {
-        "use_env_variable": config.db.development.url,
+        url: config.db.development.url,
         dialectOptions: {
             ssl: {
                 require: true,
