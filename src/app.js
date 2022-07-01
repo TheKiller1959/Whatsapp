@@ -32,11 +32,11 @@ app.get("/", (req, res) => {
         message: "Welcome to my API"
     })
 })
-app.use("/api/v1", usersRouter);
+app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/", conversationRouter);
-app.use("/api/v1", messageRouter);
-app.use("/api/v1", participansRouter);
+app.use("/api/v1/conversations", conversationRouter);
+app.use("/api/v1/messages", messageRouter);
+app.use("/api/v1/participants", participansRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({
