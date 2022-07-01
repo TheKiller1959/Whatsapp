@@ -31,7 +31,7 @@ app.use("/api/v1/", conversationRouter);
 app.use("/api/v1", messageRouter);
 app.use("/api/v1", participansRouter);
 
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({
     message: "Welcome to my WhatsApp API, developed by the best team and guided by Academlo" 
   })
