@@ -6,19 +6,15 @@ const config = require('../config')
 
 
 const registerUser = async (req, res) => {
-    if (!req.body) {
-        return res.status(400).json({ message: 'Invalid Data' })
-    }
     
-    const [newUser, err] = await toPromise(controllers.registerNewUser(req.body))
-    if (err) {
-        console.log(err)
-        return res.status(400).json({ message: 'Internal Error' })
-    }
     
-    res.status(201).json(newUser)
+        const [user, err] = await toPromise(controllers.registerNewUser(req.body));
+        if (err || !req.body) {
+            res.status(400).json({ message: 'Data Missing' });
+        }
+        res.status(201).json({user});
+    
 }
-
 const loginUser = async (req, res) => {
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({ message: 'Invalid Credentials' })
