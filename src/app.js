@@ -28,8 +28,14 @@ else app.use(morgan("combined"));
 app.use("/api/v1", usersRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/", conversationRouter);
-app.use("/api/v1", messageRouter)
-app.use("/api/v1", participansRouter)
+app.use("/api/v1", messageRouter);
+app.use("/api/v1", participansRouter);
+
+app.get("/test", (req, res) => {
+  res.status(200).json({
+    message: "Welcome to my WhatsApp API, developed by the best team and guided by Academlo" 
+  })
+})
 
 app.listen(config.port, () =>{
     console.log(`Server started at port ${config.port}`)
