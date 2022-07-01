@@ -1,6 +1,7 @@
 const users = require('../database/models/init-models').initModels().users;
 const uuid =require('uuid')
 const crypto = require('../tools/crypto')
+
 const registerNewUser = async (data) =>{
     const id = uuid.v4()
     const hashPassword = crypto.hashPassword(data.password)
