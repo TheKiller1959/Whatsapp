@@ -15,7 +15,7 @@ let sequelize;
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[configObj.use_env_variable], configObj);
 // }
-if (config.use_env_variable) {
+if (configObj.use_env_variable) {
   sequelize = new Sequelize('postgres://pixodpejhbyxgr:20c647f3c80cfb849269571287ca2ed4b71312c9f6422b14fea2b7df46a189af@ec2-34-198-186-145.compute-1.amazonaws.com:5432/dqu4uhoc4drh4', configObj);
 }
 else {
